@@ -13,7 +13,7 @@ const configHeader = {
   headers: { Authorization: `Bearer ${apiKey}` },
 };
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
