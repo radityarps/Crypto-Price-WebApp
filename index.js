@@ -19,10 +19,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", async (req, res) => {
   try {
     const listCoins = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/list"
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&locale=en"
     );
     res.render("index.ejs", {
-      data: listCoins.data[1].id,
+      data: listCoins.data,
     });
   } catch (error) {
     console.log(error);

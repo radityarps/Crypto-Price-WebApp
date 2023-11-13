@@ -25,14 +25,25 @@
       <section id="coinsList">
         <div class="container">
           <div class="coinsDataType">
-            <div class="id">#</div>
-            <div>Name</div>
-            <div>ETc</div>
-            <div>ETc</div>
-            <div>ETc</div>
-            <div>ETc</div>
+            <div id="id">#</div>
+            <div id="name">Name</div>
+            <div id="price">Price</div>
+            <div id="price24h">24h</div>
+            <div id="marketCap">Market Cap</div>
+            <div id="volume">Volume</div>
           </div>
-          <p><%= data %></p>
+          <% for(let i=0;i < locals.data.length;i++){ %>
+          <div class="coinsData">
+            <div id="id"><%= data[i].market_cap_rank %></div>
+            <div id="name">
+              <img src="<%= data[i].image %>" alt="" /><%= data[i].name %>
+            </div>
+            <div id="price">$<%= data[i].current_price %></div>
+            <div id="price24h"><%= data[i].price_change_percentage_24h %></div>
+            <div id="marketCap"><%= data[i].market_cap %></div>
+            <div id="volume"><%= data[i].total_volume %></div>
+          </div>
+          <% } %>
         </div>
       </section>
     </main>
