@@ -8,45 +8,45 @@
   </head>
   <body>
     <header>
-      <nav>
-        <ul>
-          <a href="/"><li>TopCoins</li></a>
-          <a href="/trending-today"><li>TrendingToday</li></a>
-        </ul>
-      </nav>
+        <p><i class="fa-brands fa-connectdevelop fa-spin-pulse fa-lg"></i>Top100Coins</p>
     </header>
     <main>
-      <section id="search">
-        <form action="/search" method="post">
-          <input type="text" name="search" placeholder="Search for coins" />
-          <button type="submit">search</button>
-        </form>
-      </section>
       <section id="coinsList">
         <div class="container">
           <div class="coinsDataType">
             <div id="id">#</div>
-            <div id="name">Name</div>
+            <div id="name">Name<span id="coinSymbol">Symbol</span></div>
             <div id="price">Price</div>
-            <div id="price24h">24h</div>
+            <div id="price24h">24h%</div>
             <div id="marketCap">Market Cap</div>
             <div id="volume">Volume</div>
           </div>
-          <% for(let i=0;i < locals.data.length;i++){ %>
-          <div class="coinsData">
-            <div id="id"><%= data[i].market_cap_rank %></div>
-            <div id="name">
-              <img src="<%= data[i].image %>" alt="" /><%= data[i].name %>
+          <% if (locals.data){ %>
+            <% for(let i=0;i < locals.data.length;i++){ %>
+            <div class="coinsData">
+              <div id="id"><%= data[i].market_cap_rank %></div>
+              <div id="name">
+                <img src="<%= data[i].image %>" alt="" /><%= data[i].name %><span id="coinSymbol"><%= data[i].symbol.toUpperCase() %></span>
+              </div>
+              <div id="price">$<%= data[i].current_price.toLocaleString() %></div>
+              <div id="price24h"><%= data[i].price_change_percentage_24h.toFixed(2) %>%</div>
+              <div id="marketCap">$<%= data[i].market_cap.toLocaleString() %></div>
+              <div id="volume">$<%= data[i].total_volume.toLocaleString() %></div>
             </div>
-            <div id="price">$<%= data[i].current_price %></div>
-            <div id="price24h"><%= data[i].price_change_percentage_24h %></div>
-            <div id="marketCap"><%= data[i].market_cap %></div>
-            <div id="volume"><%= data[i].total_volume %></div>
-          </div>
+            <% } %>
+          <% }else{ %>
+            <div class="coinsData">
+            <div id="id">-</div>
+            <div id="name">-</div>
+            <div id="price">-</div>
+            <div id="price24h">-</div>
+            <div id="marketCap">-</div>
+            <div id="volume">-</div>
           <% } %>
         </div>
       </section>
     </main>
+    <script src="https://kit.fontawesome.com/10f527342c.js" crossorigin="anonymous"></script>
     <script defer src="index.js"></script>
     <footer></footer>
   </body>
